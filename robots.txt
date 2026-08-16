@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://ashutosh-iitg.github.io/sitemap.xml
