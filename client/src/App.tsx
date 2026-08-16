@@ -17,21 +17,27 @@ function Router() {
   return (
     <Switch>
       <Route path="/" component={Home} />
+      <Route path="/blog" component={Blog} />
       <Route path="/blog/*" component={Blog} />
-      <Route path="/doom/*">
-        <Suspense fallback={null}>
-          <Doom />
-        </Suspense>
-      </Route>
+      <Route path="/doom" component={DoomRoute} />
+      <Route path="/doom/*" component={DoomRoute} />
       <Route component={NotFound} />
     </Switch>
+  );
+}
+
+function DoomRoute() {
+  return (
+    <Suspense fallback={null}>
+      <Doom />
+    </Suspense>
   );
 }
 
 function App() {
   const showLoader = useOrbVisibility();
   const [location] = useLocation();
-  const isGameRoute = location === "/doom";
+  const isGameRoute = location === "/doom" || location.startsWith("/doom/");
 
   return (
     // "user" = globally respect prefers-reduced-motion in all framer-motion animations.
