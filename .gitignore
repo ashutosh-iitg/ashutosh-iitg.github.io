@@ -49,3 +49,9 @@ out/
 # Misc
 *.pem
 .vercel
+
+# Unredacted CV source (contains phone number — never commit, see PLAN.md §11)
+/assets/
+
+# Local redaction tooling
+/.venv-redact/

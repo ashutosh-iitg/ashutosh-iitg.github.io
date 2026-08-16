@@ -1,21 +1,28 @@
-import { Card, CardContent } from "@/components/ui/card";
-import { AlertCircle } from "lucide-react";
+import { Link, useLocation } from "wouter";
 
 export default function NotFound() {
-  return (
-    <div className="min-h-screen w-full flex items-center justify-center bg-gray-50">
-      <Card className="w-full max-w-md mx-4">
-        <CardContent className="pt-6">
-          <div className="flex mb-4 gap-2">
-            <AlertCircle className="h-8 w-8 text-red-500" />
-            <h1 className="text-2xl font-bold text-gray-900">404 Page Not Found</h1>
-          </div>
+  const [location] = useLocation();
 
-          <p className="mt-4 text-sm text-gray-600">
-            Did you forget to add the page to the router?
-          </p>
-        </CardContent>
-      </Card>
-    </div>
+  return (
+    <main id="main" className="container flex min-h-[70vh] flex-col items-start justify-center py-24">
+      <div className="w-full max-w-2xl border border-border bg-card p-6 text-sm">
+        <p className="text-muted-foreground">
+          &gt; GET {location}
+        </p>
+        <h1 className="mt-4 font-display text-3xl font-bold tracking-tight">
+          404 — page not found
+        </h1>
+        <p className="mt-2 text-muted-foreground">
+          zsh: command not found: {location} (core dumped)
+        </p>
+        <p className="mt-6">
+          <Link href="/">
+            <a className="underline underline-offset-4 hover:text-muted-foreground">
+              cd ~/
+            </a>
+          </Link>
+        </p>
+      </div>
+    </main>
   );
 }
