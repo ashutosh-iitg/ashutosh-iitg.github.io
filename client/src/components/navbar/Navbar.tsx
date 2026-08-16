@@ -29,16 +29,18 @@ export default function Navbar() {
             </a>
           ))}
           <Link
-            href="/blog"
+            href="/blog/"
             className={`transition-colors hover:text-foreground ${
-              location === "/blog" ? "text-foreground underline underline-offset-4" : "text-muted-foreground"
+              location === "/blog" || location === "/blog/"
+                ? "text-foreground underline underline-offset-4"
+                : "text-muted-foreground"
             }`}
           >
             blog
           </Link>
           {/* Deliberately understated easter-egg entry (PLAN.md §4). */}
           <Link
-            href="/doom"
+            href="/doom/"
             className="text-muted-foreground transition-colors hover:text-foreground"
             title="a tiny tribute"
           >

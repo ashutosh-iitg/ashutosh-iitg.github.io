@@ -26,7 +26,7 @@ export const projects: ProjectEntry[] = [
       "A panel of judges for conversational safety, starting from the exchange classifier in Constitutional Classifiers++. Instead of scoring requests and responses in isolation — which misses fragmented attacks and obfuscated answers — it judges the full exchange in context against a fixed constitution. A cheap one-token `Screen` routes only suspicious traffic to the full judge, and the package includes threshold calibration, an optional PyTorch linear probe, a weighted probe/LLM ensemble, and a separate Reasoning Jury implementation for evaluating chain-of-thought traces via multi-model consensus.",
     stack: ["Python", "PyTorch", "Anthropic/OpenAI APIs", "emissary"],
     featured: true,
-    playRoute: "/doom",
+    playRoute: "/doom/",
     links: { repo: "https://github.com/ashutosh-iitg/doom" },
   },
   {
