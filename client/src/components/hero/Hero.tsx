@@ -2,6 +2,7 @@ import { motion, useReducedMotion, type Variants } from "framer-motion";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Github, Linkedin, Mail } from "lucide-react";
 import { profile } from "@/data/profile";
+import GitHubStats from "./GitHubStats";
 
 const container: Variants = {
   hidden: {},
@@ -96,19 +97,22 @@ export default function Hero() {
 
       <motion.div
         variants={item}
-        className="mt-6 w-full max-w-2xl overflow-hidden border border-border bg-card p-4"
+        className="mt-6 grid w-full max-w-5xl gap-4 lg:grid-cols-[1fr_320px]"
       >
-        <p className="mb-3 text-xs text-muted-foreground" aria-hidden="true">
-          &gt; git contributions --author={profile.handle}
-        </p>
-        <img
-          src={`https://ghchart.rshah.org/e5e5e5/${profile.handle}`}
-          alt={`GitHub contribution chart for ${profile.handle}`}
-          className="w-full"
-          width={663}
-          height={104}
-          loading="lazy"
-        />
+        <div className="overflow-hidden border border-border bg-card p-4">
+          <p className="mb-3 text-xs text-muted-foreground" aria-hidden="true">
+            &gt; git contributions --author={profile.handle}
+          </p>
+          <img
+            src={`https://ghchart.rshah.org/444444/${profile.handle}`}
+            alt={`GitHub contribution chart for ${profile.handle}`}
+            className="w-full invert contrast-125"
+            width={663}
+            height={104}
+            loading="lazy"
+          />
+        </div>
+        <GitHubStats />
       </motion.div>
     </motion.section>
   );
