@@ -17,8 +17,8 @@ function Router() {
   return (
     <Switch>
       <Route path="/" component={Home} />
-      <Route path="/blog" component={Blog} />
-      <Route path="/doom">
+      <Route path="/blog/*" component={Blog} />
+      <Route path="/doom/*">
         <Suspense fallback={null}>
           <Doom />
         </Suspense>

@@ -14,10 +14,8 @@ export default function Navbar() {
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border bg-background/90 backdrop-blur">
       <div className="container flex h-14 items-center justify-between">
-        <Link href="/">
-          <a className="text-sm font-semibold tracking-tight hover:underline underline-offset-4">
-            {profile.handle}<span className="text-muted-foreground">:~$</span>
-          </a>
+        <Link href="/" className="text-sm font-semibold tracking-tight hover:underline underline-offset-4">
+          {profile.handle}<span className="text-muted-foreground">:~$</span>
         </Link>
 
         <nav className="flex items-center gap-5 text-sm" aria-label="Primary">
@@ -30,20 +28,21 @@ export default function Navbar() {
               {label}
             </a>
           ))}
-          <Link href="/blog">
-            <a
-              className={`transition-colors hover:text-foreground ${
-                location === "/blog" ? "text-foreground underline underline-offset-4" : "text-muted-foreground"
-              }`}
-            >
-              blog
-            </a>
+          <Link
+            href="/blog"
+            className={`transition-colors hover:text-foreground ${
+              location === "/blog" ? "text-foreground underline underline-offset-4" : "text-muted-foreground"
+            }`}
+          >
+            blog
           </Link>
           {/* Deliberately understated easter-egg entry (PLAN.md §4). */}
-          <Link href="/doom">
-            <a className="text-muted-foreground transition-colors hover:text-foreground" title="a tiny tribute">
-              [play]
-            </a>
+          <Link
+            href="/doom"
+            className="text-muted-foreground transition-colors hover:text-foreground"
+            title="a tiny tribute"
+          >
+            [play]
           </Link>
           <a
             href={profile.resumePath}
