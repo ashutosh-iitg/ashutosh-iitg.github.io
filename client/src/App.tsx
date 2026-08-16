@@ -1,4 +1,4 @@
-import { Suspense, lazy } from "react";
+import { Suspense, lazy, useEffect, useRef } from "react";
 import { Switch, Route, useLocation } from "wouter";
 import { AnimatePresence, MotionConfig } from "framer-motion";
 import { Toaster } from "@/components/ui/toaster";
@@ -9,6 +9,48 @@ import Navbar from "@/components/navbar/Navbar";
 import Footer from "@/components/footer/Footer";
 import ThinkingOrbLoader from "@/components/loader/ThinkingOrbLoader";
 import { useOrbVisibility } from "@/components/loader/useOrbVisibility";
+
+const KONAMI = [
+  "ArrowUp",
+  "ArrowUp",
+  "ArrowDown",
+  "ArrowDown",
+  "ArrowLeft",
+  "ArrowRight",
+  "ArrowLeft",
+  "ArrowRight",
+  "b",
+  "a",
+];
+
+function useKonamiShortcut(target: string) {
+  const [, navigate] = useLocation();
+  const buffer = useRef<string[]>([]);
+
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => {
+      const tag = (e.target as HTMLElement)?.tagName?.toLowerCase();
+      if (
+        ["input", "textarea", "select"].includes(tag) ||
+        (e.target as HTMLElement)?.isContentEditable
+      ) {
+        return;
+      }
+
+      buffer.current.push(e.key);
+      if (buffer.current.length > KONAMI.length) {
+        buffer.current.shift();
+      }
+      if (buffer.current.join(",") === KONAMI.join(",")) {
+        buffer.current = [];
+        navigate(target);
+      }
+    };
+
+    window.addEventListener("keydown", handler);
+    return () => window.removeEventListener("keydown", handler);
+  }, [navigate, target]);
+}
 
 // Code-split: the game never lands in the main bundle (PLAN.md §15).
 const Doom = lazy(() => import("@/pages/Doom"));
@@ -38,6 +80,9 @@ function App() {
   const showLoader = useOrbVisibility();
   const [location] = useLocation();
   const isGameRoute = location === "/doom" || location.startsWith("/doom/");
+
+  // Hidden Konami-code shortcut to the easter egg (PLAN.md §3 stretch).
+  useKonamiShortcut("/doom/");
 
   return (
     // "user" = globally respect prefers-reduced-motion in all framer-motion animations.
